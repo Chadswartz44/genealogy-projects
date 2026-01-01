@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Family Heritage Discovery Platform Design System */
+@layer base {
+  :root {
+    /* Core Brand Colors - Warm Heritage Palette */
+    --background: 30 20% 99%;
+    --foreground: 30 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 15%;
+
+    /* Primary - Warm Orange */
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 24 95% 45%;
+
+    /* Secondary - Soft Sage Green */
+    --secondary: 145 30% 94%;
+    --secondary-foreground: 145 40% 25%;
+
+    /* Muted */
+    --muted: 30 15% 95%;
+    --muted-foreground: 30 10% 45%;
+
+    /* Accent - Heritage Teal */
+    --accent: 175 40% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Heritage Green */
+    --heritage-green: 145 35% 45%;
+    --heritage-green-light: 145 40% 92%;
+    --heritage-green-foreground: 0 0% 100%;
+
+    /* Heritage Gold */
+    --heritage-gold: 40 85% 55%;
+    --heritage-gold-foreground: 30 10% 15%;
+
+    /* Warm Cream */
+    --cream: 35 40% 96%;
+    --cream-foreground: 30 10% 25%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UI Elements */
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(30 20% 15% / 0.9), hsl(30 20% 25% / 0.7));
+    --gradient-orange: linear-gradient(135deg, hsl(24 95% 53%), hsl(30 90% 50%));
+    --gradient-green: linear-gradient(135deg, hsl(145 40% 92%), hsl(145 35% 88%));
+    --gradient-warm: linear-gradient(180deg, hsl(35 40% 96%), hsl(30 20% 99%));
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(30 20% 15% / 0.06);
+    --shadow-md: 0 4px 16px hsl(30 20% 15% / 0.08);
+    --shadow-lg: 0 8px 32px hsl(30 20% 15% / 0.12);
+    --shadow-glow: 0 0 40px hsl(24 95% 53% / 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 30 15% 8%;
+    --foreground: 30 10% 95%;
+
+    --card: 30 15% 12%;
+    --card-foreground: 30 10% 95%;
+
+    --popover: 30 15% 12%;
+    --popover-foreground: 30 10% 95%;
+
+    --primary: 24 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 24 95% 60%;
+
+    --secondary: 145 20% 18%;
+    --secondary-foreground: 145 30% 85%;
+
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 10% 65%;
+
+    --accent: 175 35% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --heritage-green: 145 30% 55%;
+    --heritage-green-light: 145 25% 20%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 24 95% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer components {
+  /* Heritage Card Styles */
+  .heritage-card {
+    @apply bg-card rounded-xl shadow-md border border-border/50 
+           transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Heritage Section */
+  .heritage-section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Heritage Container */
+  .heritage-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Heritage Badge */
+  .heritage-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+           bg-secondary text-secondary-foreground;
+  }
+
+  /* DNA Map Region Colors */
+  .dna-europe { @apply bg-[hsl(210,60%,50%)]; }
+  .dna-africa { @apply bg-[hsl(35,85%,55%)]; }
+  .dna-asia { @apply bg-[hsl(15,80%,50%)]; }
+  .dna-americas { @apply bg-[hsl(145,50%,45%)]; }
+  .dna-oceania { @apply bg-[hsl(280,50%,55%)]; }
+  .dna-middle-east { @apply bg-[hsl(45,80%,50%)]; }
+}
+
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient-heritage {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-heritage-gold;
+  }
+
+  /* Animate Float */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Animate Pulse Soft */
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  /* Animate Fade In Up */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  /* Animate Slide In */
+  .animate-slide-in-left {
+    animation: slide-in-left 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-out forwards;
+  }
+
+  /* Stagger children animations */
+  .stagger-children > * {
+    @apply opacity-0 animate-fade-in-up;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+
+  /* Scroll reveal */
+  .scroll-reveal {
+    @apply opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .scroll-reveal.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}

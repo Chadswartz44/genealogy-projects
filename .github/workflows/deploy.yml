@@ -1,0 +1,126 @@
+name: Deploy to Vercel
+
+# Only run on push to main branch (production)
+on:
+  push:
+    branches: [ main ]
+
+# Don't run if it's a pull request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: Deploy Family Story
+  deploy-family-story:
+    name: Deploy Family Story
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+      
+    - name: Pull Vercel Environment Information
+      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      
+    - name: Build Project Artifacts
+      working-directory: ./family-story-ui-main
+      run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      
+    - name: Deploy to Vercel
+      working-directory: ./family-story-ui-main
+      run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      
+    - name: Update deployment status
+      uses: bobheadxi/deployments@v1
+      with:
+        step: finish
+        token: ${{ secrets.GITHUB_TOKEN }}
+        env: ${{ job.environment }}
+        deployment_id: ${{ job.deployment_id }}
+
+  # Job 2: Deploy Family Weaver
+  deploy-family-weaver:
+    name: Deploy Family Weaver
+    runs-on: ubuntu-latest
+    environment: production
+    needs: deploy-family-story
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+      
+    - name: Deploy Family Weaver
+      working-directory: ./family-weaver-ui-main
+      run: |
+        vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+  
+  # Job 3: Deploy Heritage Hub
+  deploy-heritage-hub:
+    name: Deploy Heritage Hub
+    runs-on: ubuntu-latest
+    environment: production
+    needs: deploy-family-weaver
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+      
+    - name: Deploy Heritage Hub
+      working-directory: ./heritage-hub-ui-main
+      run: |
+        vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+  
+  # Job 4: Post-deployment notifications
+  notify:
+    name: Send Notifications
+    runs-on: ubuntu-latest
+    needs: [deploy-family-story, deploy-family-weaver, deploy-heritage-hub]
+    
+    steps:
+    - name: Send Slack notification
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Deployment completed for all genealogy projects!'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        
+    - name: Create deployment summary
+      run: |
+        echo "# Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "## Projects Deployed:" >> $GITHUB_STEP_SUMMARY
+        echo "- Family Story: ✅" >> $GITHUB_STEP_SUMMARY
+        echo "- Family Weaver: ✅" >> $GITHUB_STEP_SUMMARY
+        echo "- Heritage Hub: ✅" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Deployment Time:** $(date)" >> $GITHUB_STEP_SUMMARY

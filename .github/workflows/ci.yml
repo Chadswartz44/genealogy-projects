@@ -1,0 +1,103 @@
+name: CI/CD Pipeline
+
+# This workflow runs on push to main branch and pull requests
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+# Defines the jobs that run in parallel or sequentially
+jobs:
+  # Job 1: Linting and Type Checking
+  lint-and-type-check:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        project: [family-story-ui-main, family-weaver-ui-main, heritage-hub-ui-main]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ${{ matrix.project }}/package-lock.json
+    
+    - name: Install dependencies for ${{ matrix.project }}
+      working-directory: ./${{ matrix.project }}
+      run: npm ci
+      
+    - name: Run ESLint
+      working-directory: ./${{ matrix.project }}
+      run: npm run lint
+      
+    - name: Run TypeScript type check
+      working-directory: ./${{ matrix.project }}
+      run: npm run type-check
+  
+  # Job 2: Build and Test
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    needs: lint-and-type-check
+    strategy:
+      matrix:
+        project: [family-story-ui-main, family-weaver-ui-main, heritage-hub-ui-main]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: ${{ matrix.project }}/package-lock.json
+    
+    - name: Install dependencies
+      working-directory: ./${{ matrix.project }}
+      run: npm ci
+      
+    - name: Run tests
+      working-directory: ./${{ matrix.project }}
+      run: npm test
+      
+    - name: Build project
+      working-directory: ./${{ matrix.project }}
+      run: npm run build
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.project }}-build
+        path: ${{ matrix.project }}/dist/
+        retention-days: 7
+  
+  # Job 3: Security scanning
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run npm audit
+      run: |
+        cd family-story-ui-main && npm audit
+        cd ../family-weaver-ui-main && npm audit
+        cd ../heritage-hub-ui-main && npm audit
+        
+    - name: Run Snyk security scan
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --all-projects

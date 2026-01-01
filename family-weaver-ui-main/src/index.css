@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Family Heritage Discovery Platform - Warm, Emotional Design System */
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 40 33% 98%;
+    --foreground: 220 15% 15%;
+    
+    /* Cards & surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    
+    /* Popovers */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    
+    /* Primary - Warm Orange (Heritage CTA) */
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 24 95% 45%;
+    
+    /* Secondary - Soft Green (Tree, Nature) */
+    --secondary: 152 35% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 152 35% 95%;
+    
+    /* Muted - Warm Beige */
+    --muted: 35 30% 94%;
+    --muted-foreground: 220 10% 45%;
+    
+    /* Accent - Heritage Gold */
+    --accent: 38 75% 55%;
+    --accent-foreground: 220 15% 15%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders & Inputs */
+    --border: 35 25% 88%;
+    --input: 35 25% 88%;
+    --ring: 24 95% 53%;
+    
+    /* Radius */
+    --radius: 0.75rem;
+    
+    /* Sidebar */
+    --sidebar-background: 40 33% 98%;
+    --sidebar-foreground: 220 15% 25%;
+    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 35 30% 94%;
+    --sidebar-accent-foreground: 220 15% 15%;
+    --sidebar-border: 35 25% 88%;
+    --sidebar-ring: 24 95% 53%;
+    
+    /* Custom Heritage Colors */
+    --heritage-orange: 24 95% 53%;
+    --heritage-orange-dark: 24 95% 45%;
+    --heritage-green: 152 35% 45%;
+    --heritage-green-light: 152 35% 95%;
+    --heritage-gold: 38 75% 55%;
+    --heritage-sepia: 35 40% 75%;
+    --heritage-warm-white: 40 33% 98%;
+    --heritage-dark: 220 25% 12%;
+    --heritage-navy: 220 50% 20%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 12% / 0.9), hsl(220 25% 12% / 0.7));
+    --gradient-warm: linear-gradient(135deg, hsl(40 33% 98%), hsl(35 30% 94%));
+    --gradient-orange: linear-gradient(135deg, hsl(24 95% 53%), hsl(24 95% 45%));
+    --gradient-green: linear-gradient(135deg, hsl(152 35% 45%), hsl(152 45% 35%));
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(220 15% 15% / 0.06);
+    --shadow-md: 0 4px 20px hsl(220 15% 15% / 0.1);
+    --shadow-lg: 0 8px 40px hsl(220 15% 15% / 0.12);
+    --shadow-glow: 0 0 40px hsl(24 95% 53% / 0.25);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-out;
+    --transition-normal: 250ms ease-out;
+    --transition-slow: 400ms ease-out;
+  }
+
+  .dark {
+    --background: 220 25% 10%;
+    --foreground: 40 20% 95%;
+    
+    --card: 220 25% 14%;
+    --card-foreground: 40 20% 95%;
+    
+    --popover: 220 25% 14%;
+    --popover-foreground: 40 20% 95%;
+    
+    --primary: 24 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 152 35% 40%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 220 20% 18%;
+    --muted-foreground: 40 15% 65%;
+    
+    --accent: 38 75% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 24 95% 55%;
+    
+    --sidebar-background: 220 25% 12%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 24 95% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 220 20% 22%;
+    --sidebar-ring: 24 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .font-body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+  
+  .gradient-orange {
+    background: var(--gradient-orange);
+  }
+  
+  .gradient-green {
+    background: var(--gradient-green);
+  }
+  
+  .shadow-heritage {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .shadow-glow-orange {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.5s ease-out forwards;
+  }
+  
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Sepia filter for heritage photos */
+.sepia-heritage {
+  filter: sepia(30%) contrast(1.05) brightness(0.95);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
